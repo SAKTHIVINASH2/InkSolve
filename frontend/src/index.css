@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 220 14% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 14% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 14% 10%;
+    --primary: 172 66% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 16% 93%;
+    --secondary-foreground: 220 14% 10%;
+    --muted: 210 16% 93%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 210 16% 93%;
+    --accent-foreground: 220 14% 10%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 172 66% 50%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 220 16% 6%;
+    --foreground: 210 20% 95%;
+    --card: 220 14% 10%;
+    --card-foreground: 210 20% 95%;
+    --popover: 220 14% 10%;
+    --popover-foreground: 210 20% 95%;
+    --primary: 172 66% 50%;
+    --primary-foreground: 220 16% 6%;
+    --secondary: 220 12% 14%;
+    --secondary-foreground: 210 20% 95%;
+    --muted: 220 12% 14%;
+    --muted-foreground: 215 14% 55%;
+    --accent: 220 12% 14%;
+    --accent-foreground: 210 20% 95%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 210 20% 95%;
+    --border: 220 12% 14%;
+    --input: 220 12% 14%;
+    --ring: 172 66% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}
+
+/* Hide scrollbar but keep scrollable */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Canvas */
+.canvas-drawing {
+  cursor: crosshair;
+  touch-action: none;
+}
+.canvas-eraser {
+  cursor: cell;
+  touch-action: none;
+}
+
+/* Animations — respect reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes tooltip-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .tooltip-animate {
+    animation: tooltip-in 0.15s ease-out;
+  }
+
+  @keyframes progress-bar {
+    0% { width: 0%; margin-left: 0; }
+    50% { width: 60%; margin-left: 20%; }
+    100% { width: 0%; margin-left: 100%; }
+  }
+  .animate-progress-bar {
+    animation: progress-bar 1.5s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip-animate { opacity: 1; }
+  .animate-progress-bar { width: 100%; }
+}
+
+/* Glass effect */
+.glass {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+/* Glow for primary CTA */
+.glow-primary {
+  box-shadow: 0 0 24px -4px hsl(var(--primary) / 0.35);
+}
